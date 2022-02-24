@@ -1,0 +1,7 @@
+{
+  "name": "libraryCatalog",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
