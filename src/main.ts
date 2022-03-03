@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import BaseLayout from './components/base/BaseLayout.vue';
 import router from './router';
 import { store, key } from './store';
 
@@ -28,6 +29,8 @@ const app = createApp(App)
   .use(IonicVue)
   .use(router)
   .use(store, key);
+
+app.component('base-layout', BaseLayout);
   
 router.isReady().then(() => {
   app.mount('#app');
