@@ -1,26 +1,19 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Book View</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true" class="ion-padding">
-      <ion-title collapse="condense">{{ book.author }} - {{ book.title }}</ion-title>
-      <p>{{ book.description }}</p>
-    </ion-content>
-  </ion-page>
+  <base-layout :title="`${book.author} - ${book.title}`">
+    <ion-title collapse="condense">ISBN: {{ book.isbn }}</ion-title>
+    <p>{{ book.description }}</p>
+  </base-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from "@ionic/vue";
+import { IonTitle } from "@ionic/vue";
 import { useRoute } from "vue-router";
 import { useStore } from "../store";
 
 export default defineComponent({
   name: "BookViewPage",
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  components: { IonTitle },
   setup() {
     const store = useStore();
     const route = useRoute();
