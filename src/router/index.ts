@@ -24,12 +24,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/BookViewPage.vue")
       },
       {
-        path: "tab2",
-        component: () => import("@/views/Tab2Page.vue"),
-      },
-      {
-        path: "tab3",
-        component: () => import("@/views/Tab3Page.vue"),
+        path: "add",
+        component: () => import("@/views/AddBookPage.vue"),
       },
     ],
   },
