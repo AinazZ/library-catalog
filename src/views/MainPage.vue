@@ -1,7 +1,7 @@
 <template>
   <base-layout title="Моя библиотека">
     <ion-list>
-      <ion-item v-for="book in books" :key="book.isbn" @click="openBook(book.isbn)">
+      <ion-item v-for="book in sortedBooks" :key="book.isbn" @click="openBook(book.isbn)">
         {{ book.author }} - {{ book.title }}
       </ion-item>
     </ion-list>
@@ -22,12 +22,22 @@ export default defineComponent({
     const router = useRouter();
 
     const books = computed(() => store.state.books);
+    const sortedBooks = books.value.sort(function(a, b) {
+      let authorA = a.author.toLowerCase(), authorB = b.author.toLowerCase();
+      if (authorA < authorB) {
+        return -1;
+      }
+      if (authorA > authorB) {
+        return 1;
+      }
+      return 0;
+    });
 
     function openBook(isbn: string) {
       router.push("/mylibrary/catalog/book/" + isbn);
     }
 
-    return { books, openBook };
+    return { sortedBooks, openBook };
   },
 });
 </script>
