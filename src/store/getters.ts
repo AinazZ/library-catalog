@@ -15,4 +15,16 @@ export const getters: GetterTree<State, State> & Getters = {
       return state.books.find((book) => book.isbn === bookIsbn);
     };
   },
+  sortedBooks: (state) => {
+    return state.books.sort(function(a, b) {
+      const authorA = a.author.toLowerCase(), authorB = b.author.toLowerCase();
+      if (authorA < authorB) {
+        return -1;
+      }
+      if (authorA > authorB) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 };

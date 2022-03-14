@@ -21,17 +21,7 @@ export default defineComponent({
     const store = useStore();
     const router = useRouter();
 
-    const books = computed(() => store.state.books);
-    const sortedBooks = books.value.sort(function(a, b) {
-      let authorA = a.author.toLowerCase(), authorB = b.author.toLowerCase();
-      if (authorA < authorB) {
-        return -1;
-      }
-      if (authorA > authorB) {
-        return 1;
-      }
-      return 0;
-    });
+    const sortedBooks = computed(() => store.getters.sortedBooks);
 
     function openBook(isbn: string) {
       router.push("/mylibrary/catalog/book/" + isbn);
