@@ -32,12 +32,17 @@ export default defineComponent({
   components: { IonList, IonItem, IonLabel, IonInput, IonTextarea, IonButton },
   emits: ["save-book"],
   setup(props, { emit }) {
-    const state = reactive({
+    const initialState = reactive({
       authorName: "",
       bookName: "",
       isbn: "",
       description: "",
     });
+    const state = reactive({...initialState});
+
+    function resetForm() {
+      Object.assign(state, initialState);
+    }
 
     function submitForm() {
       const newBook = {
@@ -47,6 +52,8 @@ export default defineComponent({
         description: state.description,
       };
       emit("save-book", newBook);
+
+      resetForm();
     }
 
     return { submitForm, ...toRefs(state) };
